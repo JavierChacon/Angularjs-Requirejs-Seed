@@ -1,0 +1,263 @@
+# NYC_Face - pagina pública NYC
+
+  Aplicación totalmente hecha en javascript hecha con el 
+  propósito de ser la pagina pública del cliente NYC. 
+
+  Se creó a partir del proyecto "angular-seed". La documentacion de dicho proyecto está en el archivo README.md (texto)
+  Luego se configuró requireJS. Esto para poder cargar librerías de terceros de forma asíncrona y también por la funcionalidad de compresión de archivos .js y .css
+
+### Pre-requisitos 
+
+ - Chrome 
+
+ - git v1.9.2+ (Descargar desde http://git-scm.com/download/win) 
+
+ - nodejs v0.10.32+  (Descargar desde http://nodejs.org/download/). IMPORTANTE: Que también se instale el npm (Node Package Manager)
+ 
+ - Eclipse Luna (Opcional). Cualquier Editor de texto o IDE debería funcionar, pero de usar un IDE 
+   diferente a eclipse se debe marcar sus archivos de configuración para ser ignorados en el SVN. 
+
+ - Es aconsejable si se quiere trabajar cómodo que la computadora donde se vaya a desarrollar cuente con un procesador de al menos 2 CPU y 2GB de RAM. 
+   Con 4 CPU se trabaja bastante bien y hasta da oportunidad de escuchar música.
+   
+### Instalación 
+
+ - Hacer Checkout al SVN de la ruta D:\NYC_Web\
+
+ - Desde la cónsola de git (GIT Bash) ejecutar los siguientes coman
+    cd D:/NYC_Web/code/trunk/NYC_Face
+	
+	npm install -g bower
+	
+	npm install
+	dos
+ 
+	npm run update-webdriver
+	
+ - Para verificar la instalación, iniciamos el proyecto con los siguientes siguientes pasos. 
+ 
+   - Abrir la consola de windows (cmd)
+   
+   - Ir hasta la ruta del proyecto (D:/NYC_Web/code/trunk/NYC_Face)
+   
+   - Ejecutar: npm start. Esto debería iniciar el proyecto.
+   
+   - Abrir el navegador y introducir la ruta http://localhost:8000/app/
+   
+   - Abrir otra consola sin cerrar la actual e ir a la ruta del proyecto
+   
+   - Ejecuar npm test. Esto debería abrir un ventana de chrome con un mensaje diciendo "Karma v0.10.10 - connected" en fondo verde
+   
+   - En la consola donde se ejecutó el anterior comando debería aparecer los resultados de las pruebas unitarias. 
+   
+   - En otra consola y sobre la ruta del proyecto ejecutar: npm run protractor. 
+     Se debería abrir una ventana del navegador con la aplicación ejecutandose
+	  
+### Carpetas y archivos a ignorar en el SVN 
+	Hay carpetas que estan marcadas para que se excluyan del SVN . Estas carpetas son las que contienen librerias de terceros, el código de esas librerías no lo manejamos nosotros, asi 
+	que no tiene sentido subirlas al SVN. 
+	
+    Las carpetas que contienen librerias de terceros son:
+	- node_modules 
+	- bower_components
+		
+	Esas carpetas están marcadas para ser ignoradas por el SVN, por lo que no tienen ningún ícono de Check. También está ignorado el archivo 
+	node-debug.txt, porque ahi se guarda una traza de los comandos que dieron error en node. Eso tampoco nos interesa en el SVN. 
+	
+	Seguro que alguna vez han pasado por una situación en la que actualizan todo el proyecto del SVN y de repente configuración del proyecto se dañó.	
+	En ese momento todos miran al nuevo con desaprobación por no decir ira (Y dependiendo del momento ganas de asesinarlo). Y todo porque al nuevo se le olvidó
+	que no debía subir unos archivos al SVN y lo peor de todo es que luego de un momento así a esa persona le dará miedo hacer un commit.
+	
+    Esa situacióin se puede evitar si excluímos los archivos de configuración del IDE que estemos usando. Para el caso de eclipse son los siguientes: 	
+	- .settings
+	- .checkstyle (Esto lo crea un plugin de eclipse llamado Checkstyle) 	
+	
+	Esto también da libertad para que cada desarrollador trabaje con el IDE o editor de texto que prefiera, siempre y cuando excluya también los archivos de configuración de su IDE
+	y actualice este documento indicando cuales son los archivos y para que IDE. 
+	
+
+### Correr NYC_Face para desarrollo 
+
+  IMPORANTE: De ahora en adelante para todos los comandos que se indican en este documento se asumirá 
+  que la consola esta corriendo sobre el directorio D:/NYC_Web/code/trunk/NYC_Face
+
+  Para ver el proyecto corriendo solo hace falta correr el comando: npm start. 
+
+  Cuando este el servidor iniciado ir al navegador y colocar la siguiente ruta: http://localhost:8000/app/
+  
+  ## Nota sobre las dependencias
+  
+    Tenemos dos tipos de depencias: las dependencias de node y las dependencias de la página
+    
+	# Dependencias de Node
+    Son aquellas librerias que son utiles para el desarrollo pero que no afectac el funcionamiento de la web. P. e.:karma, jasmine, etc.. 
+    Son utles para probar, desplegar y cosas por el estilo pero la aplicación en produccion no hará uso de esas librerías.
+	
+	Estas se agregan al proyecto a través del npm, el mismo que usamos para instalar y arrantar el proyecto. 
+	Es importante que si esa librería va a formar parte del día a día del desarrollo se debe agregar como depencia en el archivo package.json. 
+	De forma que el comando "npm install", se instale automáticamente en el proyecto y así mantener la configuración de desarrollo simple.
+
+    # Dependencias de la página 	
+	Las librerias que necesita la pagina para correr tales como: Angular, jquery, requireJS, bootstrap, etc.
+    Igual que las de Node es importante registrar las dependencias del proyecto a través de bower. Estas dependencias están el archivo bower.json
+	
+	Imagina el escenario cuando tienes una máquina nueva o formateaste la que ya tienes y con una sonrisa en la cara ves lo rápida que anda. 
+	Pero ahora tienes que ponerte a trabajar y recuerdas que tienes que instalar el ambiente de desarrollo. Y piensas: Miee.... Que lad....
+	
+	Para que eso no ocurra, o al menos te ahorres mucho tiempo, hay que llevar el registro de esas librerías, para cuando ejecutes "npm install" 
+	ya tengas todo listo para correr.   
+
+### Configurar proyecto en eclipse 
+
+  Si una se quiere trabajar desde eclipse, hay que configurar el workspace para que reconozca el proyecto. 
+
+  Lo primero que hay que hacer es iniciar eclipse con la ruta del trunk (D:/NYC_Web/code/trunk/). 
+
+  Una vez se abre eclipse, hay que indicar al SVN que no tome en cuenta los archivos del workspace. 
+  Para ello en el explorador ir a la carpeta de trunk y agregar las carpetas .metada y RemoteSystemsTempFiles 
+  a la lista para ignorar del SVN (p. e. Click derecho -> TortoiseSVN -> Add to ignore list -> RemoteSystemsTempFiles)
+  
+  Se debe eliminar la carpeta node_modules y bower_components debido a que contienen mucho código javascript el cual eclipse intentará validar
+  ocasionando que el IDE funcione muy lento.  
+  
+  Una vez abierto el workspace se debe desactivar la construcción automática. Project -> Build Automatically. 
+  Procedemos a crear proyecto File -> New -> Javascript -> Javascript Project y colocamos como nombre del proyecto NYC_Face. 
+  Luego se marca la opcion "Create Project from existing source" y se coloca la carpeta del proyecto, seguidamente click en finish. 
+  
+  Debido a que los directorios node_modules y bower_components contienen solo librerias de terceros, hay que excluirlos de los fuentes proyecto. 
+  De esa forma cuando vuelvan a generarse no interferiran en el proceso de validación de archivos  
+  Para ello, Haciendo click derecho en el proyecto -> Properties -> Javascript -> Include Path -> Source. 
+  
+  Una vez ahí eliminar todas carpetas fuentes. Y agregar app y e2e-test. Luego, expandimos la carpeta de app, seleccionamos excluded y click en Edit.
+  En Exclusion Patterns, click en Add y colocar: bower_components/
+  
+  ##Configurar consola de comando en eclipse
+  
+    Debido a que siempre vamos a estar ejecutando comando en el promp, es util correrlos desde eclipse de esa forma tenemos 
+	menos ventanas abiertas en el menu de inicio de windows. 
+	
+	Hacer click en Run -> External Tools -> External Tools Configurations.
+	Seleccionar Program y luego hacer click en New.
+	Le colocamos un nombre (posiblemente CMD). 
+	En Location colocamos la dirección del cmd en el sistema (Probablemente: C:\Windows\System32\cmd.exe)
+	En working directory: ${workspace_loc:/NYC_Face}
+	Hacer click en el tab de common y luego dentro de "display in favorites menu" marcar la casilla de External Tools, y por ultimo hacer click en Close.
+	
+	Luego repetir lo mismo que para cmd pero para git. 
+	En Name colocamos: Git. 	
+	En working directory: ${workspace_loc:/NYC_Face}
+	En Arguments --login -i
+	En el tab Common seleccionar en Encoding UTF-8. Close.
+
+    Corremos la consola de git Run -> External Tools -> Git. Y ejecutar: npm install. Esto debería recrear la carpeta node_modules y bower_components. 
+	Una vez terminado la ejecución. Hacer click en el proyecto y presionar F5.	
+	
+	Listo!! Ya esta configurado el proyecto desde eclipse.
+	
+	
+### Testing
+
+  Para este proyecto estan configuradas pruebas unitarias y pruebas de integración(e2e) 
+  
+  ## Pruebas unitarias
+  Por cada archivo en de codigo javascript del proyecto se debe crear otro archivo javascript con el mismo nombre agregandole el sufijo _test. 
+  En estos archivos se codificarán las pruebas unitirias. 
+  Al momento de codificar las pruebas hay que tener en mente la palabra "solido", unas buenas pruebas unitarías nos ayudan a detectar bugs en el código. 
+  A veces puede dar fastidio codificarlas, pero en esos momentos hay que recordar que es más fastidioso corregir un bug a las carreras, sobre todo cuando 
+  se trata de una funcionalidad que hace tiempo que no se modifica. 
+
+  Las pruebas unitarias estan escritas con jasmine. La documentación esta acá: https://jasmine.github.io/2.0/introduction.html  
+  
+  Para correr las pruebas unitarias ejcutar en la consola de windows: npm test.
+  Esto inciará el karma que ejecutará todas las pruebas unitarias. 
+  Si se deja abierto el proceso al igual que la ventana que abre en el navegador, detectará cada cambio que se haga sobre los archivos y ejecutará por cada cambio todas las pruebas unitarias.
+  Si alguna de las pruebas falla se reflejará en el el proceso. 
+  
+  La configuración de las pruebas unitarias esta en el archivo test/karma.conf.js
+  
+  ## Pruebas e2e
+  Estas son pruebas para simular el comportamiento del usuario. 
+  Por cada funcionalidad se debe crear un archivo de pruebas e2e. Estos archivos deben emular los casos de pruebas. 
+  Los archivos de pruebas e2e llevarán el nombre de la funcionalidad y se almacenaran en la carpeta test/e2e-tests/
+  
+  Para correr los escenarios de prueba, se implementa una herramienta llamada protractor. Esta herramienta se integra directamente 
+  con el navegador y simula el comportamiento indicado en los escenarios. 
+  
+  La configuración de los escenarios de pruebas se encuentra en el archivo test/protractor.conf.js  
+  
+  Para correr las pruebas e2e se debe ejecutar: npm run protractor
+  
+### Aspectos generales para el manejo del SVN
+
+  - Todo desarrollo nuevo se hará en el trunk, eso implica las funcionalidades nuevas, como los cambios de las ya creadas. 
+    Día a día se debe realizar un commit sobre el trunk.
+	
+  - Cuando se vaya a hacer el primer release, se creara un brach. 
+    El branch es copia de todo el código del proyecto. 
+	Esa copia es la que se montará en el ambiente de pruebas para que el equipo de QA pruebe. 
+	Las incidencias que salgan, se corregirán en el brach y en el trunk. 
+	
+  - Mientras el equipo de QA certifica, el desarrollo de las funcionalidades que todavía no se van liberar se mantiene en el trunk. 
+  
+  - Cuando ya se tenga una versión del branch certificada por QA. 
+    A partir del branch se generarán los compilarán los componentes que se entregarán al usuario. 
+	
+  - Por cada entrega que se le haga al cliente se generará un tag a partir del branch que se compiló. 
+  
+  - En el nombre del tag se manejará la versión del producto.
+  
+  - Los tag nunca se alteran, son solo respaldos del código que se le entregó al cliente. Solo se revisan en casos de auditorías futuras.
+  
+  - Adicionalmente quiero destacar que aunque el equipo certifica las aplicaciones, la responsabilidad de que no tengan fallos es del equipo de desarrollo.
+  
+  
+### Versionado
+
+  - La versión del producto se maneja en base a tres números separamos por un punto. P. e. 1.1.1
+  
+  - El primer número representa un "major release". Solo se altera si toda la aplicación ha sido restructurada 
+    (Migración de Lenguaje, Rediseño de arquitectura, etc...)
+	
+  - El segundo número se incrementa por cada branch que se genere. Y solo se crean branch cuando se liberan funcionalidades nuevas. 
+  
+  - El tercer número representa la cantidad compilaciones que se han hecho. Solo se incrementa cuando se generan nuevos tags. 
+  
+  - Por cada despliegue en producción se debe generar un nuevo tag. 
+  
+  - IMPORTANTE: Las pruebas que ejecuta QA se deben hacer sobre los branch. 
+    Es decir, que en los componentes que se monten en el ambiente destinado para ellos.
+  
+  
+  
+  
+  
+  
+  
+  
+
+	
+	
+	
+	
+	
+	
+  
+  
+  
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+   
+   
+	
+	
