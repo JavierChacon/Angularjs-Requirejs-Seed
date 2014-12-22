@@ -1,0 +1,20 @@
+{
+   "name": "SweatStorm_Face",
+   "description": "Public Web for SweatStorm",
+   "version": "0.1.0",
+   "homepage": "https://github.com/angular/angular-seed",
+   "license": "MIT",
+   "private": true,
+   "dependencies": {
+      "angular": "~1.3.x",
+      "angular-route": "~1.3.x",
+      "angular-loader": "~1.3.x",
+      "angular-mocks": "~1.3.x",
+      "angular-resource": "~1.3.x",
+      "html5-boilerplate": "~4.3.0",
+      "bootstrap" : "3.2.x",
+      "requirejs": "~2.1.x",
+      "requirejs-domready": "latest",
+      "angular-bootstrap": "latest"
+   }
+}
